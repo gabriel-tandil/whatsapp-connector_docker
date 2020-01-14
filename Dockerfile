@@ -51,7 +51,8 @@ RUN apt-get update \
 	libxss1 \
 	libxtst6 \
 	wget \
-	xdg-utils
+	xdg-utils \
+	mc
 
 RUN apt-get clean \
 	&& rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/* /tmp/* \
