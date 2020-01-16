@@ -52,7 +52,8 @@ RUN apt-get update \
 	libxtst6 \
 	wget \
 	xdg-utils \
-	mc
+	mc \
+	htop
 
 RUN apt-get clean \
 	&& rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/* /tmp/* \
