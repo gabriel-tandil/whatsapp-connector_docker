@@ -2,20 +2,12 @@ FROM debian:stable-slim
 
 LABEL maintainer="Gabriel Alvarez <gabriel.tandil@gmail.com>"
 
-ENV VNC_SCREEN_SIZE 1024x768
-
-COPY copyables /
+WORKDIR whatsapp-connector
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-	fonts-noto-cjk \
-	supervisor \
-	x11vnc \
-	fluxbox \
 	eterm \
-	npm \
 	xvfb \
-	xterm \
 	git \
 	ca-certificates \
 	fonts-liberation \
@@ -53,34 +45,20 @@ RUN apt-get update \
 	wget \
 	xdg-utils \
 	mc \
-	htop
+	htop \
+	npm \
+	xauth
 
-RUN apt-get clean \
-	&& rm -rf /var/cache/* /var/log/apt/* /var/lib/apt/lists/* /tmp/* \
-	&& useradd -m chrome \
-	&& usermod -s /bin/bash chrome \
-	&& ln -s /update /usr/local/sbin/update \
-	&& mkdir -p /home/chrome/.fluxbox \
-	&& echo ' \n\
-		session.screen0.toolbar.visible:        false\n\
-		session.screen0.fullMaximization:       true\n\
-		session.screen0.maxDisableResize:       true\n\
-		session.screen0.maxDisableMove: true\n\
-		session.screen0.defaultDeco:    NONE\n\
-	' >> /home/chrome/.fluxbox/init \
-	&& chown -R chrome:chrome /home/chrome/.fluxbox
+RUN git clone https://github.com/gabriel-tandil/whatsapp-connector.git . \
+	&& npm install
 
-RUN cd /home/chrome \
-	&& git clone https://github.com/gabriel-tandil/whatsapp-connector.git \
-	&& cd whatsapp-connector \
-	&& npm install \
-	&& chown -R chrome:chrome /home/chrome/whatsapp-connector
+COPY copyables/* .
 
-VOLUME ["/home/chrome"]
-
-EXPOSE 5900
 EXPOSE 8900
 
-ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]
+# CMD xvfb-run -error-file=error.txt  --server-args="-screen 0 1024x768x24" ./start.sh
+CMD /bin/bash
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+
+
+
