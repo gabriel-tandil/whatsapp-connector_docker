@@ -49,7 +49,7 @@ RUN apt-get update \
 	npm \
 	xauth
 
-RUN git clone https://github.com/gabriel-tandil/whatsapp-connector.git . \
+RUN git clone https://github.com/gabriel-tandil/whatsapp-connector.git .  \
 	&& npm install
 
 COPY copyables/* .
@@ -57,7 +57,7 @@ COPY copyables/* .
 EXPOSE 8900
 
 # CMD xvfb-run -error-file=error.txt  --server-args="-screen 0 1024x768x24" ./start.sh
-CMD /bin/bash
+CMD ./start.sh
 
 
 
