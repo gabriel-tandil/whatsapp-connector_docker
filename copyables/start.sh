@@ -7,8 +7,8 @@ then
 	then
 	    break
 	fi
-        echo "whatsapp-connector crashed" |& tee -a log.txt
-        sleep $[ ( $RANDOM % 20 ) + 5 ]
+        echo "whatsapp-connector exited" |& tee -a log.txt
+        sleep $[ ( $RANDOM % 20 ) + 20 ]
         echo "Respawning.." |& tee -a log.txt
     done
 else
