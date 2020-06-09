@@ -47,6 +47,7 @@ RUN apt-get update \
 	mc \
 	htop \
 	npm \
+	xclip \
 	xauth
 
 RUN git clone https://github.com/gabriel-tandil/whatsapp-connector.git .  \
