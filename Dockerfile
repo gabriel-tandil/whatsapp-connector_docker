@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM node
 
 LABEL maintainer="Gabriel Alvarez <gabriel.tandil@gmail.com>"
 
@@ -46,7 +46,6 @@ RUN apt-get update \
 	xdg-utils \
 	mc \
 	htop \
-	npm \
 	xauth
 
 RUN git clone https://github.com/gabriel-tandil/whatsapp-connector.git .  \
