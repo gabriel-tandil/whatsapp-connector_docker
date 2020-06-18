@@ -55,7 +55,6 @@ COPY copyables/* .
 
 EXPOSE 8900
 
-# CMD xvfb-run -error-file=error.txt  --server-args="-screen 0 1024x768x24" ./start.sh
 CMD ./start.sh
 
 
