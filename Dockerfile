@@ -1,4 +1,4 @@
-FROM node:12-buster
+FROM node:12
 
 LABEL maintainer="Gabriel Alvarez <gabriel.tandil@gmail.com>"
 
