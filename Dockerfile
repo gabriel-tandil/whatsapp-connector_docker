@@ -1,4 +1,4 @@
-FROM node
+FROM node:14
 
 LABEL maintainer="Gabriel Alvarez <gabriel.tandil@gmail.com>"
 
